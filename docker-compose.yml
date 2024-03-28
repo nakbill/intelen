@@ -1,0 +1,44 @@
+version: '3.0'
+
+services:
+  db:
+    container_name: db
+    image: mariadb
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: prototype_db
+      MYSQL_USER: prototype
+      MYSQL_PASSWORD: pRH3fnn3
+    volumes:
+      - db-data:/var/lib/mysql
+    ports:
+      - 3306:3306
+    depends_on:
+      - nginx
+      - php
+  nginx:
+    image: nginx:latest
+    ports:
+      - 80:80
+    volumes:
+      - .:/prototype
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf
+    networks:
+      - code-network
+  php:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 9000:9000
+    volumes:
+      - .:/prototype
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf
+    networks:
+      - code-network
+networks:
+  code-network:
+    driver: bridge
+
+volumes:
+  db-data:
