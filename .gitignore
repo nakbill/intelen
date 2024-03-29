@@ -8,11 +8,10 @@
 /var/
 /vendor/
 ###< symfony/framework-bundle ###
-src/Entity/Category.php
-src/Repository/CategoryRepository.php
 .idea/.gitignore
 .idea/modules.xml
 .idea/php.xml
 .idea/prototype.iml
 composer.lock
 symfony.lock
+.idea/vcs.xml
