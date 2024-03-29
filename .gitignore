@@ -18,3 +18,5 @@ symfony.lock
 .idea/codeception.xml
 .idea/phpspec.xml
 .idea/phpunit.xml
+.idea/intelen.iml
+migrations/Version20240329112931.php
