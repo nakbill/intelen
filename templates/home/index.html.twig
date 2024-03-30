@@ -4,35 +4,46 @@
 
 {% block body %}
 
-<div class="container">
+<div class="container mt-5">
 
-    <!-- Ενότητα για την εμφάνιση των βιβλίων -->
-    <section>
-        <h2>Book List</h2>
-        <table class="table">
-            <thead>
-            <tr>
-                <th>Τίτλος</th>
-                <th>Έτος Κυκλοφορίας</th>
-                <th>ISBN</th>
-                <th>Εκδότης</th>
-            </tr>
-            </thead>
-            <tbody>
-            <!-- Εδώ θα γεμίσετε δυναμικά τη λίστα των βιβλίων από το backend -->
-            </tbody>
-        </table>
-    </section>
-
-    <section>
-        <h2>List of adds</h2>
-        <div class="btn-group" role="group" aria-label="Basic example">
-            <button type="button" class="btn btn-primary">Προσθήκη Χώρας</button>
-            <button type="button" class="btn btn-primary">Προσθήκη Συγγραφέα</button>
-            <button type="button" class="btn btn-primary">Προσθήκη Βιβλίου</button>
+    <div class="row justify-content-center">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-12 col-md-4 mb-3">
+                            <button type="button" class="btn btn-primary btn-block">Add a Country</button>
+                        </div>
+                        <div class="col-12 col-md-4 mb-3">
+                            <button type="button" class="btn btn-primary btn-block">Add an Author</button>
+                        </div>
+                        <div class="col-12 col-md-4 mb-3">
+                            <button type="button" class="btn btn-primary btn-block">Add a Book</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card mt-5">
+                <div class="card-body">
+                    <h5>Book List</h5>
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Publish Year</th>
+                            <th>Author</th>
+                            <th>Εκδότης</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <!-- Εδώ θα γεμίσετε δυναμικά τη λίστα των βιβλίων από το backend -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
-    </section>
+    </div>
 
-
+</div>
 </div>
 {% endblock %}
