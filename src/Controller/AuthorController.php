@@ -14,10 +14,10 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class AuthorController extends AbstractController
 {
-    #[Route('/author/new', name: 'author_new')]
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
+    #[Route('/author/action/{id<\d+>?}', name: 'author_add_edit')]
+    public function new(Request $request, EntityManagerInterface $entityManager, ?Author $author): Response
     {
-        $author = new Author();
+        $author = $author ?? new Author();
         $form = $this->createForm(AuthorType::class, $author);
 
         $form->handleRequest($request);

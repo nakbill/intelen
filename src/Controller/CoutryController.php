@@ -12,10 +12,10 @@ use Symfony\Component\Routing\Attribute\Route;
 
 class CoutryController extends AbstractController
 {
-    #[Route('/country/new', name: 'country_new')]
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
+    #[Route('/country/action/{id<\d+>?}', name: 'country_add_edit')]
+    public function new(Request $request, EntityManagerInterface $entityManager, ?Country $country): Response
     {
-        $country = new Country();
+        $country = $country ?? new Country();
         $form = $this->createForm(CountryType::class, $country);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {

@@ -15,9 +15,7 @@ class BookController extends AbstractController
     #[Route('/book/action/{id<\d+>?}', name: 'book_add_edit')]
     public function new(Request $request,  EntityManagerInterface $entityManager, ?Book $book): Response
     {
-        if (!$book) {
-            $book = new Book();
-        }
+        $book = $book ?? new Book();
         $form = $this->createForm(BookType::class, $book);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
