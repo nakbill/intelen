@@ -15,6 +15,9 @@ use App\Entity\Author;
 
 class BookType extends AbstractType
 {
+    /**
+     * @return FormBuilderInterface
+     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
@@ -48,6 +51,8 @@ class BookType extends AbstractType
                 'label' => 'Save',
                 'attr' => ['class' => 'btn btn-primary mt-3']
             ]);
+
+        return $builder;
     }
 
     public function configureOptions(OptionsResolver $resolver)

@@ -12,6 +12,9 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 class CountryType extends AbstractType
 {
+    /**
+     * @return FormBuilderInterface
+     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
@@ -23,6 +26,8 @@ class CountryType extends AbstractType
                 'label' => 'Save',
                 'attr' => ['class' => 'btn btn-primary mt-3']
             ]);
+
+        return $builder;
     }
 
     public function configureOptions(OptionsResolver $resolver)

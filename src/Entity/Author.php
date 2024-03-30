@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\AuthorRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -15,31 +16,47 @@ class Author
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    private ?int $id = null;
+    private int $id;
 
-    #[ORM\Column(length: 100)]
-    #[Assert\NotBlank]
-    private ?string $name = null;
+    #[ORM\Column(type:Types::STRING,length: 100)]
+    #[Assert\NotBlank(
+        message: "Please provide a name"
+    )]
+    private string $name ;
 
-    #[ORM\Column(length: 100)]
-    #[Assert\NotBlank]
-    private ?string $surName = null;
+    #[ORM\Column(type:Types::STRING,length: 100)]
+    #[Assert\NotBlank(
+        message: "Please provide a surname"
+    )]
+    private string $surName;
 
-    #[ORM\Column(type: "datetime")]
-    #[Assert\NotBlank]
-    #[Assert\Date]
-    private ?\DateTimeInterface $yearOfBirth = null;
-    #[ORM\Column(length: 100)]
+    #[ORM\Column(type:Types::DATE_MUTABLE)]
+    #[Assert\Date(
+        message: "Please provide a valid date"
+    )]
+    private \DateTimeInterface $yearOfBirth ;
+    #[ORM\Column(type:Types::STRING,length: 50)]
     #[Assert\Email(
         message: 'The email {{ value }} is not a valid email.',
     )]
-    private ?string $email = null;
+    private string $email;
 
+    /**
+     * @var Collection<int, Book>&iterable<Book>
+     */
     #[ORM\OneToMany(targetEntity: Book::class, mappedBy: 'author', orphanRemoval: true)]
     private Collection $books;
 
     #[ORM\ManyToOne(inversedBy: 'authors')]
-    private ?Country $country = null;
+    #[ORM\JoinColumn(name:'country_id',nullable:false, onDelete: "CASCADE")]
+    #[Assert\NotBlank(
+        message: "Please select a country"
+    )]
+    private Country $country ;
+
+    #[ORM\Column(type: Types::SMALLINT)]
+
+    private int $phone ;
 
     public function __construct()
     {
@@ -137,6 +154,18 @@ class Author
     public function setCountry(?Country $country): static
     {
         $this->country = $country;
+
+        return $this;
+    }
+
+    public function getPhone(): ?int
+    {
+        return $this->phone;
+    }
+
+    public function setPhone(int $phone): static
+    {
+        $this->phone = $phone;
 
         return $this;
     }

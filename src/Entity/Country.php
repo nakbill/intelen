@@ -25,7 +25,9 @@ class Country
         message: 'Please enter a value',
     )]
     private ?string $name = null;
-
+    /**
+     * @var Collection<int, Author>&iterable<Author>
+     */
     #[ORM\OneToMany(targetEntity: Author::class, mappedBy: 'country')]
     private Collection $authors;
 

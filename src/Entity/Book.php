@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\BookRepository;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 #[ORM\Entity(repositoryClass: BookRepository::class)]
@@ -13,16 +14,20 @@ class Book
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(type:Types::STRING,length: 255)]
     private ?string $title = null;
 
-    #[ORM\Column]
-    private ?int $publicationYear = null;
+    #[ORM\Column(type:Types::DATE_MUTABLE)]
+    private ?\DateTimeInterface $publicationYear = null;
 
-    #[ORM\Column(length: 100)]
+    #[ORM\Column(type:Types::SMALLINT, length: 10)]
+    #[Assert\Isbn(
+        type: Assert\Isbn::ISBN_10,
+        message: 'This value is not valid.',
+    )]
     private ?string $isbn = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(type:Types::STRING, length: 255)]
     private ?string $publisher = null;
 
     #[ORM\ManyToOne(inversedBy: 'books')]
@@ -50,12 +55,12 @@ class Book
         return $this;
     }
 
-    public function getPublicationYear(): ?int
+    public function getPublicationYear(): ?\DateTimeInterface
     {
         return $this->publicationYear;
     }
 
-    public function setPublicationYear(int $publicationYear): static
+    public function setPublicationYear(\DateTimeInterface $publicationYear): static
     {
         $this->publicationYear = $publicationYear;
 
