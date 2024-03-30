@@ -20,3 +20,4 @@ symfony.lock
 .idea/phpunit.xml
 .idea/intelen.iml
 migrations/Version20240329112931.php
+.idea/symfony2.xml

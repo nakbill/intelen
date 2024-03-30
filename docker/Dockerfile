@@ -15,7 +15,8 @@ RUN curl -sS https://get.symfony.com/cli/installer | bash
 
 WORKDIR /prototype
 
+
 # Run Composer install with spinner animation
-CMD  composer install -n ; php bin/console doctrine:migrations:migrate --no-interaction ;  php-fpm
+CMD  composer install -n ; php bin/console doctrine:migrations:migrate --no-interaction
 
 EXPOSE 9000

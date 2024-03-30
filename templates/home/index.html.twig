@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Intelen CRUD Project!{% endblock %}
+
+{% block body %}
+
+<div class="container">
+
+    <!-- Ενότητα για την εμφάνιση των βιβλίων -->
+    <section>
+        <h2>Book List</h2>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Τίτλος</th>
+                <th>Έτος Κυκλοφορίας</th>
+                <th>ISBN</th>
+                <th>Εκδότης</th>
+            </tr>
+            </thead>
+            <tbody>
+            <!-- Εδώ θα γεμίσετε δυναμικά τη λίστα των βιβλίων από το backend -->
+            </tbody>
+        </table>
+    </section>
+
+    <section>
+        <h2>List of adds</h2>
+        <div class="btn-group" role="group" aria-label="Basic example">
+            <button type="button" class="btn btn-primary">Προσθήκη Χώρας</button>
+            <button type="button" class="btn btn-primary">Προσθήκη Συγγραφέα</button>
+            <button type="button" class="btn btn-primary">Προσθήκη Βιβλίου</button>
+        </div>
+    </section>
+
+
+</div>
+{% endblock %}
