@@ -12,14 +12,14 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class BookController extends AbstractController
 {
-    #[Route('/book/new', name: 'book_new')]
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
+    #[Route('/book/action/{id<\d+>?}', name: 'book_add_edit')]
+    public function new(Request $request,  EntityManagerInterface $entityManager, ?Book $book): Response
     {
-        $book = new Book();
+        if (!$book) {
+            $book = new Book();
+        }
         $form = $this->createForm(BookType::class, $book);
-
         $form->handleRequest($request);
-
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->persist($book);
             $entityManager->flush();

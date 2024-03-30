@@ -4,7 +4,7 @@ namespace App\Entity;
 
 use App\Repository\BookRepository;
 use Doctrine\ORM\Mapping as ORM;
-
+use Symfony\Component\Validator\Constraints as Assert;
 #[ORM\Entity(repositoryClass: BookRepository::class)]
 class Book
 {
@@ -30,6 +30,7 @@ class Book
     private ?Author $author = null;
 
     #[ORM\Column(length: 200)]
+    #[Assert\Url]
     private ?string $url = null;
 
     public function getId(): ?int

@@ -6,6 +6,7 @@ use App\Repository\CountryRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: CountryRepository::class)]
 #[ORM\Index( name: "name_idx", columns: ["name"])]
@@ -16,7 +17,13 @@ class Country
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 200)]
+    #[ORM\Column(length: 200, unique: true)]
+    #[Assert\Unique(
+        message: 'The country {{ value }} already exists. Please provide a new one',
+    )]
+    #[Assert\NotBlank(
+        message: 'Please enter a value',
+    )]
     private ?string $name = null;
 
     #[ORM\OneToMany(targetEntity: Author::class, mappedBy: 'country')]

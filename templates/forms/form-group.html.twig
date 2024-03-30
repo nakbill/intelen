@@ -1,0 +1,8 @@
+<div class="form-group">
+    {{ form_label(value, title) }}
+    {{ form_widget(value, { 'attr': {'class': 'form-control'} }) }}
+    {{ form_errors(value) }}
+    {% if form_errors(value) %}
+        <div class="text-danger">{{ form_errors(value)|join(', ') }}</div>
+    {% endif %}
+</div>

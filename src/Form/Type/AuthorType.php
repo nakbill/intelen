@@ -4,10 +4,10 @@ namespace App\Form\Type;
 
 use App\Entity\Author;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -27,9 +27,11 @@ class AuthorType extends AbstractType
                 'label' => 'Surname',
                 'attr' => ['class' => 'form-control']
             ])
-            ->add('yearOfBirth', IntegerType::class, [
+            ->add('yearOfBirth', DateType::class, [
                 'label' => 'Year of Birth',
-                'attr' => ['class' => 'form-control']
+                'widget' => 'single_text',
+                'attr' => ['class' => 'form-control'],
+                'format' => 'yyyy-MM-dd',
             ])
             ->add('email', EmailType::class, [
                 'label' => 'Email',
@@ -58,6 +60,9 @@ class AuthorType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Author::class,
+            'csrf_protection' => true,
+            'csrf_field_name' => '_token',
+            'csrf_token_id'   => 'author_item',
         ]);
     }
 }

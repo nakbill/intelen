@@ -6,36 +6,12 @@
     <h1>New Book</h1>
 
     {{ form_start(form) }}
-    <div class="form-group">
-        {{ form_label(form.title, 'Title') }}
-        {{ form_widget(form.title, { 'attr': {'class': 'form-control'} }) }}
-    </div>
-
-    <div class="form-group">
-        {{ form_label(form.publicationYear, 'Publication Year') }}
-        {{ form_widget(form.publicationYear, { 'attr': {'class': 'form-control'} }) }}
-    </div>
-
-    <div class="form-group">
-        {{ form_label(form.isbn, 'ISBN') }}
-        {{ form_widget(form.isbn, { 'attr': {'class': 'form-control'} }) }}
-    </div>
-
-    <div class="form-group">
-        {{ form_label(form.publisher, 'Publisher') }}
-        {{ form_widget(form.publisher, { 'attr': {'class': 'form-control'} }) }}
-    </div>
-
-    <div class="form-group">
-        {{ form_label(form.author, 'Author') }}
-        {{ form_widget(form.author, { 'attr': {'class': 'form-control'} }) }}
-    </div>
-
-    <div class="form-group">
-        {{ form_label(form.url, 'URL') }}
-        {{ form_widget(form.url, { 'attr': {'class': 'form-control'} }) }}
-    </div>
-
-    <button type="submit" class="btn btn-primary">Save</button>
+    {% include './forms/form-group.html.twig' with {'value': form.title, 'title': 'Title'} %}
+    {% include './forms/form-group.html.twig' with {'value': form.publicationYear, 'title': 'Publication Year'} %}
+    {% include './forms/form-group.html.twig' with {'value': form.isbn, 'title': 'ISBN'} %}
+    {% include './forms/form-group.html.twig' with {'value': form.publisher, 'title': 'Publisher'} %}
+    {% include './forms/form-group.html.twig' with {'value': form.author, 'title': 'Author'} %}
+    {% include './forms/form-group.html.twig' with {'value': form.url, 'title': 'URL'} %}
+    {{ form_widget(form._token) }} {# Render CSRF token field #}
     {{ form_end(form) }}
 {% endblock %}

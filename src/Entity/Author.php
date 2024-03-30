@@ -6,8 +6,10 @@ use App\Repository\AuthorRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: AuthorRepository::class)]
+#[ORM\Index( name: "name_surName_idx", columns: ["name", "sur_name"])]
 class Author
 {
     #[ORM\Id]
@@ -16,15 +18,21 @@ class Author
     private ?int $id = null;
 
     #[ORM\Column(length: 100)]
+    #[Assert\NotBlank]
     private ?string $name = null;
 
     #[ORM\Column(length: 100)]
+    #[Assert\NotBlank]
     private ?string $surName = null;
 
-    #[ORM\Column]
-    private ?int $yearOfBirth = null;
-
+    #[ORM\Column(type: "datetime")]
+    #[Assert\NotBlank]
+    #[Assert\Date]
+    private ?\DateTimeInterface $yearOfBirth = null;
     #[ORM\Column(length: 100)]
+    #[Assert\Email(
+        message: 'The email {{ value }} is not a valid email.',
+    )]
     private ?string $email = null;
 
     #[ORM\OneToMany(targetEntity: Book::class, mappedBy: 'author', orphanRemoval: true)]
@@ -67,12 +75,12 @@ class Author
         return $this;
     }
 
-    public function getYearOfBirth(): ?int
+    public function getYearOfBirth(): ?\DateTimeInterface
     {
         return $this->yearOfBirth;
     }
 
-    public function setYearOfBirth(int $yearOfBirth): static
+    public function setYearOfBirth(\DateTimeInterface $yearOfBirth): static
     {
         $this->yearOfBirth = $yearOfBirth;
 

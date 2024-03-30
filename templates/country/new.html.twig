@@ -6,7 +6,8 @@
             <div class="col-lg-6">
                 <h1 class="mb-4 text-center">Create New Country</h1>
                 {{ form_start(form) }}
-                {{ form_widget(form) }}
+                {% include './forms/form-group.html.twig' with {'value': form.name, 'title': 'CountryName'} %}
+                {{ form_widget(form._token) }} {# Render CSRF token field #}
                 {{ form_end(form) }}
             </div>
         </div>
