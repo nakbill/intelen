@@ -18,12 +18,8 @@ class Country
     private ?int $id = null;
 
     #[ORM\Column(length: 200, unique: true)]
-    #[Assert\Unique(
-        message: 'The country {{ value }} already exists. Please provide a new one',
-    )]
-    #[Assert\NotBlank(
-        message: 'Please enter a value',
-    )]
+    #[Assert\Unique]
+    #[Assert\NotBlank]
     private ?string $name = null;
     /**
      * @var Collection<int, Author>&iterable<Author>

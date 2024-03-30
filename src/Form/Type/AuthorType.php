@@ -36,7 +36,6 @@ class AuthorType extends AbstractType
             ])
             ->add('yearOfBirth', DateType::class, [
                 'label' => 'Year of Birth',
-                'widget' => 'single_text',
                 'attr' => ['class' => 'form-control'],
                 'format' => 'yyyy-MM-dd',
             ])

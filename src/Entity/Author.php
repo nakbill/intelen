@@ -16,7 +16,7 @@ class Author
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    private int $id;
+    private ?int $id = null;
 
     #[ORM\Column(type:Types::STRING,length: 100)]
     #[Assert\NotBlank(
@@ -31,14 +31,10 @@ class Author
     private string $surName;
 
     #[ORM\Column(type:Types::DATE_MUTABLE)]
-    #[Assert\Date(
-        message: "Please provide a valid date"
-    )]
+    #[Assert\Date]
     private \DateTimeInterface $yearOfBirth ;
     #[ORM\Column(type:Types::STRING,length: 50)]
-    #[Assert\Email(
-        message: 'The email {{ value }} is not a valid email.',
-    )]
+    #[Assert\Email]
     private string $email;
 
     /**
@@ -54,9 +50,12 @@ class Author
     )]
     private Country $country ;
 
-    #[ORM\Column(type: Types::SMALLINT)]
-
-    private int $phone ;
+    #[ORM\Column(type: Types::STRING, nullable: true)]
+    #[Assert\Regex(
+        pattern:"/^(?:(?:\+|00)1)?[-.\s]?\(?([2-9][0-8][0-9])\)?[-.\s]?\d{3}[-.\s]?\d{4}$/",
+        message: "Please enter a valid phone"
+    )]
+    private ?string $phone =  null;
 
     public function __construct()
     {
@@ -67,6 +66,7 @@ class Author
     {
         return $this->id;
     }
+
 
     public function getName(): ?string
     {
@@ -146,24 +146,24 @@ class Author
         return $this;
     }
 
-    public function getCountry(): ?Country
+    public function getCountry(): Country
     {
         return $this->country;
     }
 
-    public function setCountry(?Country $country): static
+    public function setCountry(Country $country): static
     {
         $this->country = $country;
 
         return $this;
     }
 
-    public function getPhone(): ?int
+    public function getPhone(): ?string
     {
         return $this->phone;
     }
 
-    public function setPhone(int $phone): static
+    public function setPhone(string $phone): static
     {
         $this->phone = $phone;
 
