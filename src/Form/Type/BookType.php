@@ -2,51 +2,47 @@
 
 namespace App\Form\Type;
 
-use App\Entity\Author;
+use App\Entity\Book;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
-use Symfony\Component\Form\Extension\Core\Type\EmailType;
-use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
-use App\Entity\Country;
+use App\Entity\Author;
 
-class AuthorType extends AbstractType
+class BookType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name', TextType::class, [
-                'label' => 'Name',
+            ->add('title', TextType::class, [
+                'label' => 'Title',
                 'attr' => ['class' => 'form-control']
             ])
-            ->add('surName', TextType::class, [
-                'label' => 'Surname',
+            ->add('publicationYear', IntegerType::class, [
+                'label' => 'Publication Year',
                 'attr' => ['class' => 'form-control']
             ])
-            ->add('yearOfBirth', IntegerType::class, [
-                'label' => 'Year of Birth',
+            ->add('isbn', TextType::class, [
+                'label' => 'ISBN',
                 'attr' => ['class' => 'form-control']
             ])
-            ->add('email', EmailType::class, [
-                'label' => 'Email',
+            ->add('publisher', TextType::class, [
+                'label' => 'Publisher',
                 'attr' => ['class' => 'form-control']
             ])
-            ->add('country', EntityType::class, [
-                'label' => 'Country',
-                'class' => Country::class,
+            ->add('author', EntityType::class, [
+                'label' => 'Author',
+                'class' => Author::class,
                 'choice_label' => 'name',
                 'attr' => ['class' => 'form-control']
             ])
-            ->add('books', CollectionType::class, [
-                'entry_type' => BookType::class,
-                'allow_add' => true,
-                'allow_delete' => true,
-                'by_reference' => false,
-                'label' => false,
+            ->add('url', UrlType::class, [
+                'label' => 'URL',
+                'attr' => ['class' => 'form-control']
             ])
             ->add('save', SubmitType::class, [
                 'label' => 'Save',
@@ -57,7 +53,7 @@ class AuthorType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Author::class,
+            'data_class' => Book::class,
         ]);
     }
 }

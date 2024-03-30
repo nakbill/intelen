@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Book{% endblock %}
+
+{% block body %}
+    <h1>New Book</h1>
+
+    {{ form_start(form) }}
+    <div class="form-group">
+        {{ form_label(form.title, 'Title') }}
+        {{ form_widget(form.title, { 'attr': {'class': 'form-control'} }) }}
+    </div>
+
+    <div class="form-group">
+        {{ form_label(form.publicationYear, 'Publication Year') }}
+        {{ form_widget(form.publicationYear, { 'attr': {'class': 'form-control'} }) }}
+    </div>
+
+    <div class="form-group">
+        {{ form_label(form.isbn, 'ISBN') }}
+        {{ form_widget(form.isbn, { 'attr': {'class': 'form-control'} }) }}
+    </div>
+
+    <div class="form-group">
+        {{ form_label(form.publisher, 'Publisher') }}
+        {{ form_widget(form.publisher, { 'attr': {'class': 'form-control'} }) }}
+    </div>
+
+    <div class="form-group">
+        {{ form_label(form.author, 'Author') }}
+        {{ form_widget(form.author, { 'attr': {'class': 'form-control'} }) }}
+    </div>
+
+    <div class="form-group">
+        {{ form_label(form.url, 'URL') }}
+        {{ form_widget(form.url, { 'attr': {'class': 'form-control'} }) }}
+    </div>
+
+    <button type="submit" class="btn btn-primary">Save</button>
+    {{ form_end(form) }}
+{% endblock %}
