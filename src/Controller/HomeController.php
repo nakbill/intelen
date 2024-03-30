@@ -13,14 +13,10 @@ class HomeController extends AbstractController
     #[Route('/', name: 'home')]
     public function index( EntityManagerInterface $entityManager): Response
     {
-        // Get list of
-        $books = $entityManager->getRepository(Book::class)->findAll();
+        // Render the list of books
         return $this->render('home/index.html.twig', [
-            'controller_name' => 'HomeController',
+            'books' => $entityManager->getRepository(Book::class)->findAll(),
+
         ]);
     }
-
-
-
-
 }

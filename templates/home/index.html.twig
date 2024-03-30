@@ -12,7 +12,7 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-12 col-md-4 mb-3">
-                            <button type="button" class="btn btn-primary btn-block">Add a Country</button>
+                            <a href="{{ path('country_new') }}" class="btn btn-primary btn-block">Add a Country</a>
                         </div>
                         <div class="col-12 col-md-4 mb-3">
                             <button type="button" class="btn btn-primary btn-block">Add an Author</button>
@@ -36,7 +36,14 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <!-- Εδώ θα γεμίσετε δυναμικά τη λίστα των βιβλίων από το backend -->
+                        {% for book in books %}
+                            <tr>
+                                <td>{{ book.title }}</td>
+                                <td>{{ book.publicationYear }}</td>
+                                <td>{{ book.author.name}} {{ book.author.surName }}</td>
+                                <td>{{ book.title }}</td>
+                            </tr>
+                        {% endfor %}
                         </tbody>
                     </table>
                 </div>
