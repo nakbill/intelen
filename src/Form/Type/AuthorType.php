@@ -27,13 +27,21 @@ class AuthorType extends AbstractType
         $builder
             ->add('name', TextType::class, [
                 'label' => 'Name',
-                'attr' => ['class' => 'form-control'],
-                'constraints' => [new Length(['min' => 2])],
+                'attr' => [
+                    'class' => 'form-control',
+                    'maxlength' => 50,
+                    'minlength' => 2
+                ],
+                'constraints' => [new Length(['min' => 2, 'max' => 100])],
             ])
             ->add('surName', TextType::class, [
                 'label' => 'Surname',
-                'attr' => ['class' => 'form-control'],
-                'constraints' => [new Length(['min' => 2])]
+                'attr' => [
+                    'class' => 'form-control',
+                    'maxlength' => 50,
+                    'minlength' => 2
+                ],
+                'constraints' => [new Length(['min' => 2, 'max' => 100])]
             ])
             ->add('yearOfBirth', DateType::class, [
                 'label' => 'Year of Birth',
