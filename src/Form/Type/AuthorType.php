@@ -45,7 +45,8 @@ class AuthorType extends AbstractType
             ])
             ->add('phone', TelType::class, [
                 'label' => 'Phone',
-                'attr' => ['class' => 'form-control']
+                'attr' => ['class' => 'form-control'],
+                'required' => false
             ])
             ->add('country', EntityType::class, [
                 'label' => 'Country',

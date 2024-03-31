@@ -30,13 +30,6 @@ class CoutryController extends AbstractController
         ]);
     }
 
-    #[Route('/country/list', name: 'country_list')]
-    public function list(EntityManagerInterface $entityManager): Response
-    {
-        return $this->render('country/list.html.twig', [
-            'countries' => $entityManager->getRepository(Country::class)->findAll()
-        ]);
-    }
 
     #[Route('/country/delete/{id}', name: 'country_delete')]
     public function delete(Country $country, EntityManagerInterface $entityManager): Response

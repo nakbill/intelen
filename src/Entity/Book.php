@@ -25,7 +25,7 @@ class Book
         type: Assert\Isbn::ISBN_10,
         message: 'This value is not valid.',
     )]
-    private string $isbn ;
+    private int $isbn ;
 
     #[ORM\Column(type:Types::STRING, length: 255)]
     private string $publisher ;
@@ -72,12 +72,12 @@ class Book
         return $this;
     }
 
-    public function getIsbn(): string
+    public function getIsbn(): int
     {
         return $this->isbn;
     }
 
-    public function setIsbn(string $isbn): static
+    public function setIsbn(int $isbn): static
     {
         $this->isbn = $isbn;
 

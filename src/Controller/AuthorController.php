@@ -25,12 +25,23 @@ class AuthorController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->persist($author);
             $entityManager->flush();
-            return $this->redirectToRoute('author_show', ['id' => $author->getId()]);
+            return $this->redirectToRoute('author_add_edit', ['id' => $author->getId()]);
         }
 
         return $this->render('author/new.html.twig', [
             'form' => $form->createView(),
+            'authors' => $entityManager->getRepository(Author::class)->findAll()
         ]);
     }
+
+
+    #[Route('/author/delete/{id}', name: 'author_delete')]
+    public function delete(Author $author, EntityManagerInterface $entityManager): Response
+    {
+        $entityManager->remove($author);
+        $entityManager->flush();
+        return $this->redirectToRoute('author_add_edit');
+    }
+
 }
 

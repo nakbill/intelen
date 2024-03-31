@@ -25,27 +25,8 @@
             </div>
             <div class="card mt-5">
                 <div class="card-body">
-                    <h5>Book List</h5>
-                    <table class="table">
-                        <thead>
-                        <tr>
-                            <th>Title</th>
-                            <th>Publish Year</th>
-                            <th>Author</th>
-                            <th>Εκδότης</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        {% for book in books %}
-                            <tr>
-                                <td>{{ book.title }}</td>
-                                <td>{{ book.publicationYear }}</td>
-                                <td>{{ book.author.name}} {{ book.author.surName }}</td>
-                                <td>{{ book.title }}</td>
-                            </tr>
-                        {% endfor %}
-                        </tbody>
-                    </table>
+                    {% include './author/modules/list.html.twig' with {'authors': authors } %}
+                    {% include './country/modules/list.html.twig' with {'countries': countries } %}
                 </div>
             </div>
         </div>

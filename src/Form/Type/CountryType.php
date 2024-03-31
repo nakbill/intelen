@@ -10,6 +10,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Validator\Constraints\Length;
 
 class CountryType extends AbstractType
 {
@@ -21,7 +22,12 @@ class CountryType extends AbstractType
         $builder
             ->add('name', TextType::class, [
                 'label' => 'Country Name',
-                'attr' => ['class' => 'form-control']
+                'attr' => [
+                    'class' => 'form-control',
+                    'maxlength' => 50,
+                    'minlength' => 2
+                ],
+                'constraints' => [new Length(['min' => 2, 'max'=>'50'])],
             ])
             ->add('save', SubmitType::class, [
                 'label' => 'Save',

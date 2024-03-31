@@ -31,7 +31,6 @@ class Author
     private string $surName;
 
     #[ORM\Column(type:Types::DATE_MUTABLE)]
-    #[Assert\Date]
     private \DateTimeInterface $yearOfBirth ;
     #[ORM\Column(type:Types::STRING,length: 50)]
     #[Assert\Email]
@@ -51,10 +50,7 @@ class Author
     private Country $country ;
 
     #[ORM\Column(type: Types::STRING, nullable: true)]
-    #[Assert\Regex(
-        pattern:"/^(?:(?:\+|00)1)?[-.\s]?\(?([2-9][0-8][0-9])\)?[-.\s]?\d{3}[-.\s]?\d{4}$/",
-        message: "Please enter a valid phone"
-    )]
+
     private ?string $phone =  null;
 
     public function __construct()
@@ -163,7 +159,7 @@ class Author
         return $this->phone;
     }
 
-    public function setPhone(string $phone): static
+    public function setPhone(?string $phone): static
     {
         $this->phone = $phone;
 

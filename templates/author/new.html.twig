@@ -1,7 +1,7 @@
 
 {% extends 'base.html.twig' %}
 
-{% block title %}Add New Author{% endblock %}
+{% block title %}Add/Edit Author{% endblock %}
 
 {% block body %}
 <div class="container mt-5">
@@ -10,7 +10,7 @@
             <div class="card">
                 <div class="card-body">
                     <div class="row">
-                        <h1>Add New Author</h1>
+                        <h1>Add/Edit Author</h1>
                         {{ form_start(form) }}
                         {% include './forms/form-group.html.twig' with {'value': form.name, 'title': 'Name'} %}
                         {% include './forms/form-group.html.twig' with {'value': form.surName, 'title': 'Surname'} %}
@@ -19,7 +19,8 @@
                         {% include './forms/form-group.html.twig' with {'value': form.country, 'title': 'Country'} %}
                         {{ form_widget(form._token) }} {# Render CSRF token field #}
                         {{ form_end(form) }}
-
+                        {% include './author/modules/list.html.twig' with {'authors': authors } %}
+                        {% include './helpers/home-btn.html.twig' %}
                     </div>
                 </div>
             </div>
