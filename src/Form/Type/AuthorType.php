@@ -3,6 +3,7 @@
 namespace App\Form\Type;
 
 use App\Entity\Author;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TelType;
@@ -76,6 +77,13 @@ class AuthorType extends AbstractType
             'csrf_protection' => true,
             'csrf_field_name' => '_token',
             'csrf_token_id'   => 'author_item',
+            'constraints' => [
+                new UniqueEntity([
+                    'entityClass' => Author::class,
+                    'fields' => 'email',
+                    'message' => 'The email  "{{ value }}" is already in use.',
+                ]),
+            ]
         ]);
     }
 }
