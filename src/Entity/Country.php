@@ -17,10 +17,11 @@ class Country
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 200, unique: true)]
-    #[Assert\Unique]
-    #[Assert\NotBlank]
-    private ?string $name = null;
+    #[ORM\Column(length: 200)]
+    #[Assert\NotBlank(
+        message: "Please enter a name for Country"
+    )]
+    private string $name;
     /**
      * @var Collection<int, Author>&iterable<Author>
      */
@@ -37,7 +38,7 @@ class Country
         return $this->id;
     }
 
-    public function getName(): ?string
+    public function getName(): string
     {
         return $this->name;
     }
@@ -72,7 +73,7 @@ class Country
         if ($this->authors->removeElement($author)) {
             // set the owning side to null (unless already changed)
             if ($author->getCountry() === $this) {
-                $author->setCountry(null);
+                $author->setCountry($this);
             }
         }
 

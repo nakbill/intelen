@@ -15,35 +15,40 @@ class Book
     private ?int $id = null;
 
     #[ORM\Column(type:Types::STRING,length: 255)]
-    private ?string $title = null;
+    private string $title ;
 
     #[ORM\Column(type:Types::DATE_MUTABLE)]
-    private ?\DateTimeInterface $publicationYear = null;
+    private \DateTimeInterface $publicationYear;
 
     #[ORM\Column(type:Types::SMALLINT, length: 10)]
     #[Assert\Isbn(
         type: Assert\Isbn::ISBN_10,
         message: 'This value is not valid.',
     )]
-    private ?string $isbn = null;
+    private string $isbn ;
 
     #[ORM\Column(type:Types::STRING, length: 255)]
-    private ?string $publisher = null;
+    private string $publisher ;
 
     #[ORM\ManyToOne(inversedBy: 'books')]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?Author $author = null;
+    #[ORM\JoinColumn(name:'author_id',nullable:false, onDelete: "CASCADE")]
+    #[Assert\NotBlank(
+        message: "Please select an Author"
+    )]
+    private Author $author ;
 
     #[ORM\Column(length: 200)]
-    #[Assert\Url]
-    private ?string $url = null;
+    #[Assert\Url(
+        message: "Please type a valid URL"
+    )]
+    private string $url ;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getTitle(): ?string
+    public function getTitle(): string
     {
         return $this->title;
     }
@@ -55,7 +60,7 @@ class Book
         return $this;
     }
 
-    public function getPublicationYear(): ?\DateTimeInterface
+    public function getPublicationYear(): \DateTimeInterface
     {
         return $this->publicationYear;
     }
@@ -67,7 +72,7 @@ class Book
         return $this;
     }
 
-    public function getIsbn(): ?string
+    public function getIsbn(): string
     {
         return $this->isbn;
     }
@@ -79,7 +84,7 @@ class Book
         return $this;
     }
 
-    public function getPublisher(): ?string
+    public function getPublisher(): string
     {
         return $this->publisher;
     }
@@ -91,19 +96,19 @@ class Book
         return $this;
     }
 
-    public function getAuthor(): ?Author
+    public function getAuthor(): Author
     {
         return $this->author;
     }
 
-    public function setAuthor(?Author $author): static
+    public function setAuthor(Author $author): static
     {
         $this->author = $author;
 
         return $this;
     }
 
-    public function getUrl(): ?string
+    public function getUrl(): string
     {
         return $this->url;
     }

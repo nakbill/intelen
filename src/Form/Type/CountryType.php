@@ -4,6 +4,7 @@ namespace App\Form\Type;
 
 
 use App\Entity\Country;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -37,6 +38,13 @@ class CountryType extends AbstractType
             'csrf_protection' => true,
             'csrf_field_name' => '_token',
             'csrf_token_id'   => 'author_item',
+            'constraints' => [
+                new UniqueEntity([
+                    'entityClass' => Country::class,
+                    'fields' => 'name',
+                    'message' => 'The Country name  "{{ value }}" is already in use.',
+                ]),
+            ]
         ]);
     }
 }

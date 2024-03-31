@@ -21,11 +21,29 @@ class CoutryController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->persist($country);
             $entityManager->flush();
-            return $this->redirectToRoute('country_new');
+            return $this->redirectToRoute('country_add_edit', ['id'=> $country->getId()]);
         }
 
         return $this->render('country/new.html.twig', [
             'form' => $form->createView(),
+            'countries' => $entityManager->getRepository(Country::class)->findAll()
         ]);
     }
+
+    #[Route('/country/list', name: 'country_list')]
+    public function list(EntityManagerInterface $entityManager): Response
+    {
+        return $this->render('country/list.html.twig', [
+            'countries' => $entityManager->getRepository(Country::class)->findAll()
+        ]);
+    }
+
+    #[Route('/country/delete/{id}', name: 'country_delete')]
+    public function delete(Country $country, EntityManagerInterface $entityManager): Response
+    {
+        $entityManager->remove($country);
+        $entityManager->flush();
+        return $this->redirectToRoute('country_add_edit');
+    }
+
 }

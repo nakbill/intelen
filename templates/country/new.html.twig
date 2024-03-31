@@ -4,11 +4,13 @@
     <div class="container mt-5">
         <div class="row justify-content-center">
             <div class="col-lg-6">
-                <h1 class="mb-4 text-center">Create New Country</h1>
+                <h1 class="mb-4 text-center">Add/Edit Country</h1>
                 {{ form_start(form) }}
-                {% include './forms/form-group.html.twig' with {'value': form.name, 'title': 'CountryName'} %}
-                {{ form_widget(form._token) }} {# Render CSRF token field #}
+                {% include './forms/form-group.html.twig' with {'value': form.name, 'title': 'Country Name'} %}
+                {{ form_widget(form._token) }}
                 {{ form_end(form) }}
+                {% include './country/modules/list.html.twig' with {'countries': countries } %}
+                {% include './helpers/home-btn.html.twig' %}
             </div>
         </div>
     </div>

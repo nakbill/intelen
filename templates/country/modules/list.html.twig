@@ -1,0 +1,25 @@
+<div class="mt-5">
+    {% if countries %}
+        <h5>Countries List</h5>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for country in countries %}
+                <tr>
+                    <td>{{ country.name }}</td>
+                    <td><a href="{{ path('country_add_edit', {'id': country.id}) }}" class="btn btn-primary btn-block">Edit</a></td>
+                    <td><a href="{{ path('country_delete', {'id': country.id}) }}" class="btn btn-primary btn-block">Delete</a></td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        There are currently no countries available.
+    {% endif %}
+</div>
