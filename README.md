@@ -6,7 +6,7 @@ The project is a dockerized application which involves creating a basic CRUD app
 ## Installation
 To install and run the project locally, follow these steps:
 
-1. Clone the repository:  ```git clone https://github.com/nakbill/symfony.git intelen```
+1. Clone the repository:  ```git clone https://github.com/nakbill/intelen.git intelen```
 2. Navigate to the project directory: ```cd intelen```
 3. Modify your hosts file to include ```intelen.local```
 4. Run Docker containers (Without detached mode)
