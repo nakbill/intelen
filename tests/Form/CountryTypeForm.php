@@ -8,6 +8,9 @@ use Symfony\Component\Form\Test\TypeTestCase;
 
 class CountryTypeForm extends TypeTestCase
 {
+    /**
+     * @return void
+     */
     public function testSubmitValidData()
     {
         $formData = [
@@ -37,6 +40,9 @@ class CountryTypeForm extends TypeTestCase
         }
     }
 
+    /**
+     * @return void
+     */
     public function testValidationConstraints()
     {
         $country = new Country();

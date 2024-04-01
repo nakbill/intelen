@@ -8,6 +8,10 @@ use PHPUnit\Framework\TestCase;
 
 class CountryTest extends TestCase
 {
+
+    /**
+     * @return void
+     */
     public function testCountryProperties()
     {
         $country = new Country();
@@ -16,6 +20,10 @@ class CountryTest extends TestCase
         $this->assertEquals('Test Country', $country->getName());
     }
 
+
+    /**
+     * @return void
+     */
     public function testAddRemoveAuthor()
     {
         $country = new Country();
@@ -39,6 +47,9 @@ class CountryTest extends TestCase
         $this->assertFalse($country->getAuthors()->contains($author));
     }
 
+    /**
+     * @return void
+     */
     public function testValidationConstraints()
     {
         $country = new Country();
@@ -47,7 +58,9 @@ class CountryTest extends TestCase
         $this->assertCount(0, $errors);
     }
 
-
+    /**
+     * @return \Symfony\Component\Validator\Validator\ValidatorInterface
+     */
     private function getValidator()
     {
         $validatorBuilder = \Symfony\Component\Validator\Validation::createValidatorBuilder();

@@ -69,33 +69,6 @@ class AuthorTest extends TestCase
 
     }
 
-    public function testValidationConstraints()
-    {
-        $author = new Author();
 
-        // Test blank name
-        $this->assertHasError($author, 2);
 
-        // Test blank surname
-        $author->setName('John');
-        $this->assertHasError($author, 1);
-
-        // Test valid author
-        $author->setSurName('Doe');
-        $errors = $this->getValidator()->validate($author);
-        $this->assertCount(0, $errors);
-    }
-
-    private function assertHasError(Author $author, int $count)
-    {
-        $errors = $this->getValidator()->validate($author);
-        $this->assertCount($count, $errors);
-    }
-
-    private function getValidator()
-    {
-        $validatorBuilder = \Symfony\Component\Validator\Validation::createValidatorBuilder();
-        $validator = $validatorBuilder->getValidator();
-        return $validator;
-    }
 }

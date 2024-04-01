@@ -78,6 +78,9 @@ class AuthorType extends AbstractType
         return $builder;
     }
 
+    /**
+     * @return void
+     */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([

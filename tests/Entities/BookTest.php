@@ -8,7 +8,9 @@ use PHPUnit\Framework\TestCase;
 
 class BookTest extends TestCase
 {
-
+    /**
+     * @return void
+     */
     public function testBookProperties()
     {
         $book = new Book();

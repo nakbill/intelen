@@ -8,6 +8,9 @@ use Symfony\Component\Form\Test\TypeTestCase;
 
 class AuthorTypeForm extends TypeTestCase
 {
+    /**
+     * @return void
+     */
     public function testSubmitValidData()
     {
         $formData = [
