@@ -11,7 +11,7 @@ To install and run the project locally, follow these steps:
 3. Modify your hosts file to include ```intelen.local```
 4. Run Docker containers (Without detached mode)
     - ```docker-compose up```
-    - Please note that PHP may take some time to install all the dependencies of the project. You can monitor the progress by checking the STDOUT stream until the PHP-FPM (FastCGI Process Manager) is up and running, ready to handle connections.
+    - Please note that PHP container may take some time to install all the dependencies of the project. You can monitor the progress by checking the STDOUT stream until the PHP-FPM (FastCGI Process Manager) is up and running, ready to handle connections.
 5. Alternatively, you can run the Docker Compose command in detached mode by adding the -d flag:
     - ```docker-compose up -d```
     - To monitor the logs of the PHP container, you can use the following command:  ```docker logs -t -f --tail 10 php```
