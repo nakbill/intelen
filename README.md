@@ -15,7 +15,7 @@ To install and run the project locally, follow these steps:
     - ```docker-compose up```
 ## Setup
 1. After the containers are up and running, perform the following commands to install packages and run database migration:
-   -  ```docker-compose exec php composer install -n ;```
+   -  ```composer install```
    -  ```docker-compose exec php php bin/console make:migration --no-interaction;```
    -  ```docker-compose exec php php bin/console doctrine:migrations:migrate --no-interaction```;
 2. Once the Symfony installation and migration process is completed in the PHP container is completed then access the application by browsing to ```prototype.local``` in your web browser
