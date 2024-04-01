@@ -20,12 +20,12 @@ class Book
     #[ORM\Column(type:Types::DATE_MUTABLE)]
     private \DateTimeInterface $publicationYear;
 
-    #[ORM\Column(type:Types::SMALLINT, length: 10)]
+    #[ORM\Column(type:Types::STRING, length: 15)]
     #[Assert\Isbn(
         type: Assert\Isbn::ISBN_10,
-        message: 'This value is not valid.',
+        message: 'This value is not a valid ISBN-10. Please provide a valid ISBN-10. E.g. 960-7510-94-1',
     )]
-    private int $isbn ;
+    private string $isbn ;
 
     #[ORM\Column(type:Types::STRING, length: 255)]
     private string $publisher ;
@@ -72,12 +72,12 @@ class Book
         return $this;
     }
 
-    public function getIsbn(): int
+    public function getIsbn(): string
     {
         return $this->isbn;
     }
 
-    public function setIsbn(int $isbn): static
+    public function setIsbn(string $isbn): static
     {
         $this->isbn = $isbn;
 

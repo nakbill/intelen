@@ -59,11 +59,10 @@ class Country
     {
         return $this->authors;
     }
-
     public function addAuthor(Author $author): static
     {
         if (!$this->authors->contains($author)) {
-            $this->authors->add($author);
+            $this->authors[] = $author;
             $author->setCountry($this);
         }
 
@@ -72,13 +71,7 @@ class Country
 
     public function removeAuthor(Author $author): static
     {
-        if ($this->authors->removeElement($author)) {
-            // set the owning side to null (unless already changed)
-            if ($author->getCountry() === $this) {
-                $author->setCountry($this);
-            }
-        }
-
+        $this->authors->removeElement($author);
         return $this;
     }
 }

@@ -11,4 +11,5 @@ vendor/bin/phpstan analyse src -l 9
 
 docker-compose exec php php bin/console make:migration
 docker-compose exec php php bin/console doctrine:migrations:migrate
-
+docker-compose exec php php bin/phpunit
+docker-compose exec php vendor/bin/phpstan analyse src -l 9

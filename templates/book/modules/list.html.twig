@@ -1,0 +1,35 @@
+<div class="mt-5">
+    {% if books %}
+        <h5>Book List</h5>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Title</th>
+                <th>Publication Year</th>
+                <th>ISBN-10</th>
+                <th>Publisher</th>
+                <th>Author</th>
+                <th>URl</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for book in books %}
+                <tr>
+                    <td>{{ book.title }}</td>
+                    <td>{{ book.publicationYear|date('d-m-Y')  }} </td>
+                    <td>{{ book.isbn }} </td>
+                    <td>{{ book.publisher }} </td>
+                    <td>{{ book.author.name }} </td>
+                    <td>{{ book.url }} </td>
+                    <td><a href="{{ path('book_add_edit', {'id': book.id}) }}" class="btn btn-primary btn-block">Edit</a></td>
+                    <td><a href="{{ path('book_delete', {'id': book.id}) }}" class="btn btn-danger btn-block">Delete</a></td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        There are currently no authors available.
+    {% endif %}
+</div>

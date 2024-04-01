@@ -3,15 +3,26 @@
 {% block title %}New Book{% endblock %}
 
 {% block body %}
-    <h1>New Book</h1>
-
-    {{ form_start(form) }}
-    {% include './forms/form-group.html.twig' with {'value': form.title, 'title': 'Title'} %}
-    {% include './forms/form-group.html.twig' with {'value': form.publicationYear, 'title': 'Publication Year'} %}
-    {% include './forms/form-group.html.twig' with {'value': form.isbn, 'title': 'ISBN'} %}
-    {% include './forms/form-group.html.twig' with {'value': form.publisher, 'title': 'Publisher'} %}
-    {% include './forms/form-group.html.twig' with {'value': form.author, 'title': 'Author'} %}
-    {% include './forms/form-group.html.twig' with {'value': form.url, 'title': 'URL'} %}
-    {{ form_widget(form._token) }} {# Render CSRF token field #}
-    {{ form_end(form) }}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="card">
+                <div class="card-body">
+                <h1>New Book</h1>
+                {{ form_start(form) }}
+                    {% include './forms/form-group.html.twig' with {'value': form.title, 'title': 'Title'} %}
+                    {% include './forms/form-group.html.twig' with {'value': form.publicationYear, 'title': 'Publication Year'} %}
+                    {% include './forms/form-group.html.twig' with {'value': form.isbn, 'title': 'ISBN-10'} %}
+                    {% include './forms/form-group.html.twig' with {'value': form.publisher, 'title': 'Publisher'} %}
+                    {% include './forms/form-group.html.twig' with {'value': form.author, 'title': 'Author'} %}
+                    {% include './forms/form-group.html.twig' with {'value': form.url, 'title': 'URL'} %}
+                    {{ form_widget(form._token) }} {# Render CSRF token field #}
+                    {{ form_end(form) }}
+                    {% include './book/modules/list.html.twig' with {'books': books } %}
+                    {% include './helpers/home-btn.html.twig' %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}

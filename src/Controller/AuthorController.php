@@ -1,6 +1,5 @@
 <?php
 
-// src/Controller/AuthorController.php
 
 namespace App\Controller;
 

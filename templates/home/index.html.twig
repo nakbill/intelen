@@ -5,7 +5,6 @@
 {% block body %}
 
 <div class="container mt-5">
-
     <div class="row justify-content-center">
         <div class="col-lg-12">
             <div class="card">
@@ -27,6 +26,7 @@
                 <div class="card-body">
                     {% include './author/modules/list.html.twig' with {'authors': authors } %}
                     {% include './country/modules/list.html.twig' with {'countries': countries } %}
+                    {% include './book/modules/list.html.twig' with {'books': books } %}
                 </div>
             </div>
         </div>

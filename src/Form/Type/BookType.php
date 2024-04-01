@@ -3,15 +3,18 @@
 namespace App\Form\Type;
 
 use App\Entity\Book;
+use App\Entity\Country;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use App\Entity\Author;
+use Symfony\Component\Validator\Constraints\Url;
 
 class BookType extends AbstractType
 {
@@ -25,9 +28,10 @@ class BookType extends AbstractType
                 'label' => 'Title',
                 'attr' => ['class' => 'form-control']
             ])
-            ->add('publicationYear', IntegerType::class, [
-                'label' => 'Publication Year',
-                'attr' => ['class' => 'form-control']
+            ->add('publicationYear', DateType::class, [
+                'label' => 'Year of Birth',
+                'attr' => ['class' => 'form-control'],
+                'format' => 'yyyy-MM-dd',
             ])
             ->add('isbn', TextType::class, [
                 'label' => 'ISBN',
@@ -45,7 +49,10 @@ class BookType extends AbstractType
             ])
             ->add('url', UrlType::class, [
                 'label' => 'URL',
-                'attr' => ['class' => 'form-control']
+                'attr' => ['class' => 'form-control'],
+                'constraints' => [
+                    new Url(['message' => 'The URL "{{ value }}" is not a valid URL.']),
+                ],
             ])
             ->add('save', SubmitType::class, [
                 'label' => 'Save',
@@ -61,7 +68,14 @@ class BookType extends AbstractType
             'data_class' => Book::class,
             'csrf_protection' => true,
             'csrf_field_name' => '_token',
-            'csrf_token_id'   => 'author_item',
+            'csrf_token_id'   => 'book_item',
+            'constraints' => [
+                new UniqueEntity([
+                    'entityClass' => Book::class,
+                    'fields' => 'isbn',
+                    'message' => 'The ISBN "{{ value }}" is already in use.',
+                ]),
+            ]
         ]);
     }
 }
