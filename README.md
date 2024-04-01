@@ -22,7 +22,7 @@ To install and run the project locally, follow these steps:
 
 ## Development
 For static analysis using PHPStan:
-- ```docker-compose exec php vendor/bin/phpstan analyse src tests -l <DESIRED_LEVEL```
+- ```docker-compose exec php vendor/bin/phpstan analyse src tests -l <DESIRED_LEVEL>```
   
 For running PHPUnit tests:
 - ```docker-compose exec php php bin/phpunit```
