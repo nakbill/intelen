@@ -1,4 +1,4 @@
-# Welcome to the Intelen project repository!
+# Welcome to the Intelen project
 
 # Introduction
 The project is a dockerized application which involves creating a basic CRUD application using Symfony 7 (latest version). It will manage data related to books and authors, allowing users to perform operations like adding, viewing, updating, and deleting records.
