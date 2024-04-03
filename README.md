@@ -10,7 +10,7 @@ To install and run the project locally, follow these steps:
 2. Install composer dependency manager for PHP on your local machine
 3. Clone the repository:  ```git clone https://github.com/nakbill/intelen.git intelen```
 4. Navigate to the project directory: ```cd intelen```
-5. Modify your hosts file to include ```127.0.0.1 prototype.local``` or ```localhost prototype.local```
+5. Modify your hosts file to include ```localhost prototype.local``` or ```127.0.0.1 prototype.local``` 
 6. Run Docker containers (Without detached mode)
     - ```docker-compose up```
 ## Setup
